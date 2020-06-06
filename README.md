@@ -1,7 +1,4 @@
 # Hangman
-My own little python version of Hangman
-
-
-Continue learning the python fundamentals using the child game "Hangman".
+My own little python version of Hangman to continue learning the python fundamental.
 
 Nothing really fancy but a good practise nontheless :)
