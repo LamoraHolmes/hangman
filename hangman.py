@@ -11,7 +11,7 @@ guesses = set()
 
 def generate_wordlist():
     with open(os.path.join(sys.path[0], 'wordlist.txt'), "r") as f:
-            
+
             wordlist = [line.rstrip() for line in f]
             f.close()
             return wordlist
@@ -23,11 +23,11 @@ def random_word(wordlist):
 
 
 def turn():
-    
+
     global attemps, word, letter, guessed_letter_list, guesses
 
     result = evaluate()
-    
+
     hangman_picture(attemps)
     print(f"{guessed_letter_list}               #characters you alreasy guessed {guesses}")
     print("")
@@ -41,15 +41,15 @@ def turn():
         return
     elif guessed_letter_list == list(word):
         return
-    
-    
+
+
     letter = input("Guess another letter: ")
-    
+
     while letter in guesses:
         print("You already guesses this letter.")
         print("")
-        letter = input("Please guess another letter: ") 
-    
+        letter = input("Please guess another letter: ")
+
     guesses.add(letter)
 
     print("")
@@ -61,7 +61,7 @@ def evaluate():
 
     if letter in list(word):
         index = [index for index,value in enumerate(word) if value == letter]
-        
+
         for i in index:
             guessed_letter_list[i] = letter
 
@@ -70,7 +70,7 @@ def evaluate():
     else:
         attemps += 1
         return False
-    
+
 
 
 
@@ -79,7 +79,7 @@ def welcome_message():
     global word, letter, guessed_letter_list, attemps, guesses
 
     print("")
-    print("##########################")    
+    print("##########################")
     print("### Welcome to Hangman ###")
     print("##########################")
     print("")
@@ -87,10 +87,12 @@ def welcome_message():
 
     if start_game:
         answer = "y"
-        while answer == "y":            
+        while answer == "y":
 
                 wordlist = generate_wordlist()
                 word = random_word(wordlist)
+                attemps = 0
+                guesses = set()
 
                 guessed_letter_list = ["_" for i in range(0,len(word))]
 
